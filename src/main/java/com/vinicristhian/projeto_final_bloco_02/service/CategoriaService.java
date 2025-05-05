@@ -49,7 +49,7 @@ public class CategoriaService {
 	Optional<Categoria> categoria = categoriaRepository.findById(id);
 	
 	if (categoria.isEmpty()) {
-	    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+	    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não existe!", null);
 	}
 	
 	categoriaRepository.deleteById(id);
