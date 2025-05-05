@@ -48,7 +48,6 @@ build/
 *.sig
 
 pkg/
-src/
 
 ### Eclipse ###
 .metadata
