@@ -1,4 +1,4 @@
-package com.vinicristhian.projeto_final_bloco_02.Controller;
+package com.vinicristhian.projeto_final_bloco_02.controller;
 
 import java.util.List;
 
@@ -15,47 +15,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vinicristhian.projeto_final_bloco_02.model.Categoria;
-import com.vinicristhian.projeto_final_bloco_02.service.CategoriaService;
+import com.vinicristhian.projeto_final_bloco_02.model.Produto;
+import com.vinicristhian.projeto_final_bloco_02.service.ProdutoService;
 
 import jakarta.validation.Valid;
 
-
 @RestController
-@RequestMapping("/categoria")
-public class CategoriaController {
+@RequestMapping("/produto")
+public class ProdutoController {
     
     @Autowired
-    private CategoriaService categoriaService;
-    
+    private ProdutoService produtoService;
+
     @GetMapping
-    public ResponseEntity<List<Categoria>> findAll() {
-	return categoriaService.buscarTudo();
+    public ResponseEntity<List<Produto>> findAll() {
+	return produtoService.buscarTudo();
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> findById(@PathVariable Long id) {
-	return categoriaService.buscarPorId(id);
+    public ResponseEntity<Produto> findById(@PathVariable Long id) {
+	return produtoService.buscarPorId(id);
     }
     
-    @GetMapping("/descricao/{descricao}")
-    public ResponseEntity<List<Categoria>> findByCategoria(@PathVariable String descricao) {
-        return categoriaService.buscarPorDescricao(descricao);
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<Produto>> findByNome(@PathVariable String nome) {
+        return produtoService.buscarPorNome(nome);
     }
     
     @PostMapping
-    public ResponseEntity<Categoria> postCategeria(@Valid @RequestBody Categoria categoria) {
-	return categoriaService.cadastrarCategoria(categoria);
+    public ResponseEntity<Produto> postProduto(@Valid @RequestBody Produto produto) {
+	return produtoService.cadastrarProduto(produto);
     }
     
     @PutMapping
-    public ResponseEntity<Categoria> putCategoria(@Valid @RequestBody Categoria categoria) {
-	return categoriaService.atualizarCategoria(categoria);
+    public ResponseEntity<Produto> putProduto(@Valid @RequestBody Produto produto) {
+	return produtoService.atualizarProduto(produto);
     }
     
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
-	categoriaService.deletar(id);
+	produtoService.deletar(id);
     }
 }
